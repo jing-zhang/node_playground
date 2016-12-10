@@ -21,7 +21,7 @@ function printPrimeNumber()
         {
             count++;
             pri.push(i);
-            console.log('%d [%s] print number %d',count, Date.now(), i);
+            console.log('[%d] print number %d',count, i);
         }
     }
 }
