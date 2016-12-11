@@ -26,8 +26,14 @@ function sync(con1, con2, indexKey) {
     for (var i = 0; i < con1.length; i++) {
         var con = con1[i];
         var found = findElement(con2, indexKey, con[indexKey])
-        if (found && found.hashCode == con.hashCode)
-            continue;
+        if (found)
+        {
+            if(found.hashCode === con.hashCode)
+                continue;
+            else
+              con["action"] = "update";
+              diff.push(con);
+        }
         else {
             con["action"] = "add";
             diff.push(con);
