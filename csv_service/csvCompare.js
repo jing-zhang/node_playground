@@ -1,13 +1,13 @@
 var readcsv = require('./csvReader');
 var fs = require('fs');
 
-
 var count = 0;
 var content1;
 var content2;
 var diff = [];
 var indexKey = "ClassID";
-var exportFileName = "diff.json"
+var exportFileName = "diff.json";
+var start;
 
 function getResult(result) {
     if (count == 0) {
@@ -49,8 +49,9 @@ function sync(con1, con2, indexKey) {
 
     if (diff.length > 0) {
         console.log("diff : " + diff.length);
-        var util = require('util');
-        fs.writeFileSync('./' + exportFileName, util.inspect(diff), 'utf-8');
+        fs.writeFileSync('./' + exportFileName, JSON.stringify(diff), 'utf-8');
+        var end = new Date() - start;
+        console.info("Execution time: %dms", end);
     }
 }
 
@@ -64,8 +65,11 @@ function findElement(arr, indexKey, value) {
 
 
 function compareCsv(filename1, filename2, valueSeparete) {
+    start = new Date();
+
     readcsv.getContent(filename1, valueSeparete, getResult);
     readcsv.getContent(filename2, valueSeparete, getResult);
+
 }
 
 
