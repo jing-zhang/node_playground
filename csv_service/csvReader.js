@@ -7,7 +7,7 @@ function GetHeader(firstLine) {
 
     var segment = firstLine.split(",");
     for (var i = 0; i < segment.length; i++) {
-        segment[i] = segment[i].substring(1, segment[i].length - 1);
+        segment[i] = segment[i].replace('"', '').replace('"', '');
     }
     return segment;
 }
@@ -17,8 +17,8 @@ function GetRow(line, valueSeparate, ln) {
     var ent = {};
     var raw = '';
     for (var i = 0; i < segment.length; i++) {
-        var value = segment[i].substring(1, segment[i].length - 1);
-        ent[header[i]] = value
+        var value = segment[i].replace('"', '').replace('"', '');
+        ent[header[i]] = value;
         raw += value;
     }
 
