@@ -28,7 +28,7 @@ function sync(con1, con2, indexKey) {
             if (found.hashCode === con.hashCode)
                 continue;
             else
-                con["action"] = "update";
+                con["action"] = "upd";
         }
         else {
             con["action"] = "add";
