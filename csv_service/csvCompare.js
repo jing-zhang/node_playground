@@ -5,8 +5,8 @@ var count = 0;
 var content1;
 var content2;
 var diff = [];
-var indexKey = "ClassID";
-var exportFileName = "diff.json";
+var indexKey;
+var exportFileName;
 var start;
 
 function getResult(result) {
@@ -64,9 +64,10 @@ function findElement(arr, indexKey, value) {
 }
 
 
-function compareCsv(filename1, filename2, valueSeparete) {
+function compareCsv(filename1, filename2, valueSeparete, indKey, exportFN) {
     start = new Date();
-
+    indexKey = indKey;
+    exportFileName = exportFN;
     readcsv.getContent(filename1, valueSeparete, getResult);
     readcsv.getContent(filename2, valueSeparete, getResult);
 
@@ -76,7 +77,5 @@ function compareCsv(filename1, filename2, valueSeparete) {
 //compareCSVs('doc.b.csv', 'doc.a.csv', '","', );
 
 module.exports = {
-    indexKey: indexKey,
-    exportFileName: exportFileName,
     csvDifference: compareCsv
 }
