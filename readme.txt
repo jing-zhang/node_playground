@@ -14,3 +14,6 @@ paramter list
 the export will be json format file, has additional field of hashcode and action. 
 hashcode is the hash value for all fields
 action has three values. [add, update, delete] 
+
+Add csvCompare2 methods
+the performance improve about 50 times better than previous version.
