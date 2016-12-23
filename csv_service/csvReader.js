@@ -52,7 +52,33 @@ function getContent(fileName, valueSparate, callback) {
     })
 }
 
+function getContentObject(fileName, valueSparate, indexKey, callback) {
+    var count = 0;
+    var content = {};
+
+    var rd = readline.createInterface({
+        input: fs.createReadStream(fileName),
+        output: process.stdout,
+        terminal: false
+    });
+
+    rd.on('line', function (line) {
+        if (count == 0)
+            header = GetHeader(line)
+        else {
+            var obj = GetRow(line, valueSparate, count);
+            content[obj[indexKey]]=obj;
+        }
+        count++;
+    });
+
+    rd.on('close', function () {
+        callback(content);
+    })
+}
+
 
 module.exports = {
-    getContent: getContent
+    getContent: getContent,
+    getContentObject: getContentObject,
 }
